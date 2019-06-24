@@ -1,0 +1,17 @@
+class array1D:
+    def __init__(self, count):
+        self.arr = [None] * count
+    def __getitem__(self, x):
+        return self.arr[x]
+    def __setitem__(self, x, data):
+        self.arr[x] = data
+        
+class array2D:
+    def __init__(self, row, column):
+        #self.arr = [array1D(column)] * row   #WRONG, why??, looks like only one instance has been created, all other entries are referencing this instance.
+        self.arr = [array1D(column) for i in range(row)]  
+    def __getitem__(self, x):
+        return self.arr[x]
+    def dump(self):
+        for row in self.arr:
+            print(row.arr)
